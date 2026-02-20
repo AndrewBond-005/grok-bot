@@ -1,3 +1,6 @@
+import os
+
+from dotenv import load_dotenv
 from telegram import Update
 from telegram.ext import Application, MessageHandler, filters, ContextTypes
 from commands import setup_stats_handlers
@@ -8,6 +11,9 @@ from dublicate import *
 from trigger import *
 from printandsave import *
 from react import *
+
+load_dotenv()
+TOKEN = os.getenv('TOKEN')
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     message_text = update.message.text
