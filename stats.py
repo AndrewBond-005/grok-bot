@@ -1,8 +1,13 @@
 import json
 import os
+from pathlib import Path
 
-STATS_FILE = "yesno_stats.json"
-
+if os.path.exists('/data/'):  # Railway
+    STATS_FILE = '/data/yesno_stats.json'
+elif os.path.exists('/tmp/'):  # Render и другие
+    STATS_FILE = '/tmp/yesno_stats.json'
+else:  # Локально
+    STATS_FILE = Path(__file__).parent / "yesno_stats.json"
 
 def load_stats():
     """Загружает статистику из файла"""

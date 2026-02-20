@@ -5,8 +5,8 @@ import random
 REACTIONS = ["👍", "👎", "❤️", "🔥", "🥰", "👏", "😁", "🤔", "🤯", "😱", "🤬", "😢", "🎉", "🤩", "🤮", "💩", "🙏", "👌"]
 
 
-async def react_to_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    if update.message and random.random() < 0.25:  # 50% вероятность
+async def react_to_message(update: Update, context: ContextTypes.DEFAULT_TYPE, prob):
+    if update.message and random.random() < prob:  # 50% вероятность
         # Выбираем случайную реакцию
         reaction = random.choice(REACTIONS)
 

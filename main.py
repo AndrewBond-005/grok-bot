@@ -1,7 +1,6 @@
 import os
 
 from dotenv import load_dotenv
-from telegram import Update
 from telegram.ext import Application, MessageHandler, filters, ContextTypes
 from commands import setup_stats_handlers
 from telegram.request import HTTPXRequest
@@ -17,14 +16,14 @@ TOKEN = os.getenv('TOKEN')
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     message_text = update.message.text
 
-    await react_to_message(update,context)
+    await react_to_message(update,context,0.1)
     if not message_text:
         return
     message_lower = message_text.lower()
     if await reply(update,context):             # ответ reply
         return
     print_and_save(message_text)                # сохранить сообщение
-    await dublicate(update)       # прошлое сообщение dublicate
+    await dublicate(update, 0.1)       # прошлое сообщение dublicate
     if await yesno(message_lower, update):      # ответить на да/нет responses
         return
     await trig(message_lower,update)            # триггер
