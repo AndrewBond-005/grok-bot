@@ -13,6 +13,7 @@ from react import *
 
 load_dotenv()
 TOKEN = os.getenv('TOKEN')
+
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     message_text = update.message.text
 
